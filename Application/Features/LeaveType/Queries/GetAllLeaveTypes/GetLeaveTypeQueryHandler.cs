@@ -1,4 +1,5 @@
-﻿using Application.Contract.Persistence;
+﻿using Application.Contract.Logging;
+using Application.Contract.Persistence;
 using AutoMapper;
 using MediatR;
 
@@ -8,11 +9,13 @@ namespace Application.Features.LeaveType.Queries.GetAllLeaveTypes
     {
         private readonly IMapper _mapper;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
+        private readonly IAppLogger<GetLeaveTypeQueryHandler> _logger;
 
-        public GetLeaveTypeQueryHandler(IMapper mapper, ILeaveTypeRepository leaveTypeRepository)
+        public GetLeaveTypeQueryHandler(IMapper mapper, ILeaveTypeRepository leaveTypeRepository, IAppLogger<GetLeaveTypeQueryHandler> logger)
         {
             _mapper = mapper;
             _leaveTypeRepository = leaveTypeRepository;
+            _logger = logger;
         }
 
         public async Task<List<LeaveTypeDto>> Handle(GetLeaveTypeQuery request, CancellationToken cancellationToken)
@@ -24,6 +27,7 @@ namespace Application.Features.LeaveType.Queries.GetAllLeaveTypes
             var data = _mapper.Map<List<LeaveTypeDto>>(leaveTypes);
 
             // Return the list of LeaveTypeDto
+            _logger.LogInformation("Leave Type were retrieved successful.");
             return  data;
         }
     }
