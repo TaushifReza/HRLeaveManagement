@@ -14,7 +14,7 @@ namespace Persistence.Repositories
 
         public async Task<bool> IsLeaveTypeNameUnique(string name)
         {
-            return await _context.LeaveTypes.AnyAsync(q => string.Equals(q.Name, name, StringComparison.CurrentCultureIgnoreCase));
+            return await _context.LeaveTypes.AnyAsync(q => q.Name == name) == false;
         }
     }
 }
