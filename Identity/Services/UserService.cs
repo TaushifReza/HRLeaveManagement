@@ -21,7 +21,7 @@ namespace Identity.Services
                     Id = q.Id,
                     FirstName = q.FirstName,
                     LastName = q.LastName,
-                    Email = q.Email
+                    Email = q.Email!
                 }).ToList();
         }
 
