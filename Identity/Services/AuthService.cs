@@ -99,11 +99,11 @@ namespace Identity.Services
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var jwtSecurityToken = new JwtSecurityToken(
-                issuer:_jwtSetting.Issuer,
-                audience:_jwtSetting.Audience,
+                issuer: _jwtSetting.Issuer,
+                audience: _jwtSetting.Audience,
                 claims:claims,
-                expires:DateTime.Now.AddMinutes(_jwtSetting.DurationInMinute),
-                signingCredentials:signingCredentials
+                expires: DateTime.UtcNow.AddMinutes(_jwtSetting.DurationInMinute),
+                signingCredentials: signingCredentials
                 );
             return jwtSecurityToken;
         }

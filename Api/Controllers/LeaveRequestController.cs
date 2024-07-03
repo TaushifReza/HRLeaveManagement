@@ -16,6 +16,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeaveRequestController : ControllerBase
     {
         private readonly IMediator _mediator;

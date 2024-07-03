@@ -9,15 +9,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services
     public class LeaveTypeService : BaseHttpService, ILeaveTypeService
     {
         private readonly IMapper _mapper;
+        private readonly ILogger<LeaveTypeService> _logger;
 
-        public LeaveTypeService(IClient client, IMapper mapper, ILocalStorageService localStorageService) : base(client, localStorageService)
+        public LeaveTypeService(IClient client, IMapper mapper, ILocalStorageService localStorageService, ILogger<LeaveTypeService> logger) : base(client, localStorageService)
         {
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<List<LeaveTypeVM>> GetLeaveTypesAsync()
         {
             await AddBearerToken();
+            var token = await _localStorageService.GetItemAsync<string>("token");
             var leaveTypes = await _client.LeaveTypeAllAsync();
             return _mapper.Map<List<LeaveTypeVM>>(leaveTypes);
         }

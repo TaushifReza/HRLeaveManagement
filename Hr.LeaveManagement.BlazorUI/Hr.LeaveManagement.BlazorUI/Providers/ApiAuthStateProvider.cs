@@ -12,7 +12,7 @@ namespace Hr.LeaveManagement.BlazorUI.Providers
 
         public ApiAuthStateProvider(ILocalStorageService localStorageService)
         {
-            _localStorageService = localStorageService;
+            this._localStorageService = localStorageService;
             _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -27,7 +27,7 @@ namespace Hr.LeaveManagement.BlazorUI.Providers
             var saveToken = await _localStorageService.GetItemAsync<string>("token");
             var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(saveToken);
 
-            if (tokenContent.ValidTo < DateTime.Now)
+            if (tokenContent.ValidTo < DateTime.UtcNow)
             {
                 await _localStorageService.RemoveItemAsync("token");
                 return new AuthenticationState(user);
@@ -48,7 +48,7 @@ namespace Hr.LeaveManagement.BlazorUI.Providers
 
         public async Task LoggedOut()
         {
-            await _localStorageService.RemoveItemAsync("accessToken");
+            await _localStorageService.RemoveItemAsync("token");
             var nobody = new ClaimsPrincipal(new ClaimsIdentity());
             var authState = Task.FromResult(new AuthenticationState(nobody));
             NotifyAuthenticationStateChanged(authState);

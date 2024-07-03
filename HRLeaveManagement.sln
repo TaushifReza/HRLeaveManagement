@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTest", "Integrat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hr.LeaveManagement.BlazorUI", "Hr.LeaveManagement.BlazorUI\Hr.LeaveManagement.BlazorUI\Hr.LeaveManagement.BlazorUI.csproj", "{16B3BE36-9667-475D-A081-722CA668CCF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{089F609E-CC6E-478C-942F-5988BC9F6352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{089F609E-CC6E-478C-942F-5988BC9F6352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

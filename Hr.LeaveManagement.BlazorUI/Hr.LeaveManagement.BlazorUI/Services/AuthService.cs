@@ -25,6 +25,8 @@ namespace Hr.LeaveManagement.BlazorUI.Services
                 {
                     await _localStorageService.SetItemAsync("token", authenticationResponse.Token);
 
+                    var token = await _localStorageService.GetItemAsync<string>("token");
+
                     // Set Claims in Blazor and login state
                     await ((ApiAuthStateProvider)_authenticationStateProvider).LoggedIn();
 

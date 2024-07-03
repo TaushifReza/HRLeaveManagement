@@ -200,14 +200,13 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.0.8.0 (NJsonSchema v11.0.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Client : IClient
     {
-        private System.Net.Http.HttpClient _httpClient;
         private static System.Lazy<System.Text.Json.JsonSerializerOptions> _settings = new System.Lazy<System.Text.Json.JsonSerializerOptions>(CreateSerializerSettings, true);
 
     #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Client(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            _httpClient = httpClient;
+            HttpClient = httpClient;
         }
 
         private static System.Text.Json.JsonSerializerOptions CreateSerializerSettings()
@@ -237,7 +236,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<AuthResponse> LoginAsync(AuthRequest body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -319,7 +318,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<RegistrationResponse> RegisterAsync(RegistrationRequest body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -401,7 +400,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<LeaveAllocationDto>> LeaveAllocationAllAsync(bool? isLoggedInUser, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -454,6 +453,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -485,7 +496,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task LeaveAllocationPOSTAsync(CreateLeaveAllocationCommand body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -550,6 +561,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -584,7 +607,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -632,6 +655,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -666,7 +701,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -732,6 +767,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -770,7 +817,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -822,6 +869,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -857,7 +916,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<LeaveRequestListDto>> LeaveRequestAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -904,6 +963,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -935,7 +1006,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task LeaveRequestPOSTAsync(CreateLeaveRequestCommand body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1000,6 +1071,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1034,7 +1117,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1082,6 +1165,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1116,7 +1211,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1182,6 +1277,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -1220,7 +1327,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1272,6 +1379,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -1307,7 +1426,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task CancelRequestAsync(CancelLeaveRequestCommand body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1372,6 +1491,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -1407,7 +1538,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task UpdateApprovalAsync(ChangeLeaveRequestApprovalCommand body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1472,6 +1603,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -1507,7 +1650,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<LeaveTypeDto>> LeaveTypeAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1554,6 +1697,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1585,7 +1740,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task LeaveTypePOSTAsync(CreateLeaveTypeCommand body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1640,6 +1795,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1674,7 +1841,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1722,6 +1889,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1756,7 +1935,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1812,6 +1991,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
+                        }
+                        else
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -1850,7 +2041,7 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1900,6 +2091,18 @@ namespace Hr.LeaveManagement.BlazorUI.Services.Base
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ProblemDetails>("Not Found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 401)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Unauthorized", status_, responseText_, headers_, null);
+                        }
+                        else
+                        if (status_ == 403)
+                        {
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Forbidden", status_, responseText_, headers_, null);
                         }
                         else
                         {

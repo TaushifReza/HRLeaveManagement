@@ -14,6 +14,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeaveAllocationController : ControllerBase
     {
         private readonly IMediator _mediator;
